@@ -1,0 +1,36 @@
+<nav>
+    <div class="container">
+        <app-logo />
+        <span class="flex-1"></span>
+        <div class="flex-row column-gap-1 cross-center">
+            <span *ngIf="($userdata | async) as userdata">Olá, {{userdata.name}}</span>
+
+            <quick-button icon="logout" hint="Fazer logoff" componentStyle="grayed" color="accent"
+                (onClick)="logoff()" />
+        </div>
+    </div>
+</nav><br>
+<quick-card [options]="{header:{title:'Meu perfil'}}">
+    <form class="card-content" *ngIf="form">
+        <quick-row *ngIf="form.get('user') as userForm">
+            <quick-text-field class="flex-1" label="Nome" [control]="userForm.get('name')" />
+            <quick-text-field class="flex-1" label="Email" [control]="userForm.get('email')" />
+        </quick-row>
+
+        <div *ngIf="form.get('endereco') as enderecoForm">
+            <quick-row>
+                <quick-text-field class="flex-1" label="CEP" [control]="enderecoForm.get('cep')" />
+                <quick-text-field class="flex-2" label="Logradouro" [control]="enderecoForm.get('logradouro')" />
+                <quick-text-field class="flex-1" label="Número" [control]="enderecoForm.get('numero')" />
+            </quick-row>
+
+            <quick-row>
+                <quick-text-field class="flex-1" label="Bairro" [control]="enderecoForm.get('bairro')" />
+                <quick-text-field class="flex-1" label="Cidade" [control]="enderecoForm.get('cidade')" />
+                <quick-text-field class="flex-1" label="Estado" [control]="enderecoForm.get('estado')" />
+            </quick-row>
+        </div>
+
+        <quick-button [stretch]="true" text="Salvar" [disabled]="!form.valid" (onClick)="salvar()" />
+    </form>
+</quick-card>

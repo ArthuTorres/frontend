@@ -1,0 +1,23 @@
+<div class="page">
+    <form>
+        <app-logo></app-logo>
+        <h1>Fazer login</h1>
+
+        <div class="flex-row stretch">
+            <quick-text-field class="flex-1" label="Email" [control]="loginForm.get('email')" />
+        </div>
+        <div class="flex-row stretch">
+            <quick-text-field class="flex-1" type="password" label="Senha" [control]="loginForm.get('password')" />
+        </div>
+
+        <div class="flex-row stretch">
+            <quick-button class="flex-1" [stretch]="true" text="Entrar" (onClick)="login()"
+                [disabled]="!loginForm.valid" />
+        </div>
+
+        <div class="flex-column cross-center">
+            <a routerLink="/cadastro-cliente">Registrar como cliente</a>
+            <a routerLink="/cadastro-prestador-servico">Registrar como prestador de serviço</a>
+        </div>
+    </form>
+</div>

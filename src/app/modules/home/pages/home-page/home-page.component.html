@@ -1,0 +1,45 @@
+<nav>
+    <div class="container">
+        <app-logo />
+        <span class="flex-1"></span>
+        <div class="flex-row column-gap-1 cross-center">
+            <span *ngIf="($userdata | async) as userdata">Olá, {{userdata.name}}</span>
+
+            <quick-button text="Criar perfil de cliente" componentStyle="grayed" color="accent"
+                *ngIf="!loading && !posssuiPerfilCliente" (onClick)="vincularCliente()" />
+            <quick-button text="Painel do cliente" componentStyle="grayed" color="accent"
+                *ngIf="!loading && posssuiPerfilCliente && profile !== 'cliente'"
+                (onClick)="alterarPerfil('cliente')" />
+
+            <quick-button text="Criar perfil de prestador de serviço" componentStyle="grayed" color="accent"
+                *ngIf="!loading && !posssuiPerfilPrestadorServico" (onClick)="vincularPrestadorServico()" />
+
+            <quick-button text="Painel do prestador de serviço" componentStyle="grayed" color="accent"
+                *ngIf="!loading && posssuiPerfilPrestadorServico && profile !== 'prestador-servico'"
+                (onClick)="alterarPerfil('prestador-servico')" />
+
+            <quick-button text="Meus dados" componentStyle="grayed" color="accent" (onClick)="abrirPerfil()" />
+
+            <quick-button icon="logout" hint="Fazer logoff" componentStyle="grayed" color="accent"
+                (onClick)="logoff()" />
+        </div>
+    </div>
+</nav>
+
+<div class="container"><br>
+    <quick-card [options]="{header:{title:'Minhas solicitações de serviço'}}" *ngIf="profile == 'cliente'">
+        <div class="card-content">
+            Página em construção
+        </div>
+    </quick-card><br>
+    <quick-card [options]="{header:{title:'Serviços em execução'}}" *ngIf="profile == 'prestador-servico'">
+        <div class="card-content">
+            Página em construção
+        </div>
+    </quick-card><br>
+    <quick-card [options]="{header:{title:'Minhas propostas'}}" *ngIf="profile == 'prestador-servico'">
+        <div class="card-content">
+            Página em construção
+        </div>
+    </quick-card>
+</div>

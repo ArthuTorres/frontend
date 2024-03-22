@@ -1,0 +1,36 @@
+<div class="page">
+    <form class="form-area" *ngIf="form">
+        <div class="header flex-row cross-center">
+            <app-logo></app-logo>
+            <span class="flex-1"></span>
+            <h1>Cadastro de prestador de serviços</h1>
+        </div>
+
+        <quick-row *ngIf="form.get('user') as userForm">
+            <quick-text-field class="flex-1" label="Nome" [control]="userForm.get('name')" />
+            <quick-text-field class="flex-1" label="Email" [control]="userForm.get('email')" />
+        </quick-row>
+
+        <div *ngIf="form.get('endereco') as enderecoForm">
+            <quick-row>
+                <quick-text-field class="flex-1" label="CEP" [control]="enderecoForm.get('cep')" />
+                <quick-text-field class="flex-2" label="Logradouro" [control]="enderecoForm.get('logradouro')" />
+                <quick-text-field class="flex-1" label="Número" [control]="enderecoForm.get('numero')" />
+            </quick-row>
+
+            <quick-row>
+                <quick-text-field class="flex-1" label="Bairro" [control]="enderecoForm.get('bairro')" />
+                <quick-text-field class="flex-1" label="Cidade" [control]="enderecoForm.get('cidade')" />
+                <quick-text-field class="flex-1" label="Estado" [control]="enderecoForm.get('estado')" />
+            </quick-row>
+        </div>
+
+        <quick-row *ngIf="form.get('user') as userForm">
+            <quick-text-field class="flex-1" type="password" label="Senha" [control]="userForm.get('password')" />
+            <quick-text-field class="flex-1" type="password" label="Confirme a senha"
+                [control]="userForm.get('passwordConfirm')" />
+        </quick-row>
+
+        <quick-button color="accent" [stretch]="true" text="Salvar" [disabled]="!form.valid" (onClick)="salvar()" />
+    </form>
+</div>
